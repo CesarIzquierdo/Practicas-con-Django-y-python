@@ -1,6 +1,20 @@
 <html>
     <body>
-        <h1>Hola esta es mi prrimera plantilla con Django</h1>
+        {% include "superior/barra.html"%}
+
+        <h1>
+            Hola esta es mi prrimera plantilla con Django
+        </h1>
+        {# ignora esta parte xd #}
+        {%comment %} ignora esta parte xd 
+        es de varias lineas
+        {% endcomment %}
+        {% if nombre_persona == 'jefe cesar' %}
+            <p>El curso lo imparte el jefe titular</p>
+
+        {%else %}
+            <p>El curso lo imparte el profesor suplente</p>
+        {%endif%}
     </body>
     <p>El nombre del profesor es: {{nombre_persona}} {{apellido_persona}}</p>
     <p>Estamos viendo los templates en esta fecha: {{momento_actual.day}} / {{momento_actual.month}}/ {{momento_actual.year}}</p>
@@ -9,7 +23,7 @@
         <ul>
             {% if temas%}
                 {% for el_tema in temas%}
-                    <li>{{el_tema}}</li>
+                    <li>{{el_tema|first|lower}}</li>
                 {% endfor %}
             {% else %}
                 <p>No hay elementos que mostrar</p>

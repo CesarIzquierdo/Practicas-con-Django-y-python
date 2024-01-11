@@ -54,7 +54,7 @@ ROOT_URLCONF = 'Proyecto1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['C:/Users/cesar/OneDrive/Documentos/estudiar/1/Django/Proyecto1/Proyecto1/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import datetime
-from django.template import Template,Context
+from django.template import Template,Context, loader
+from django.shortcuts import render
 
 class persona(object):
     def __init__(self, nombre, apellido):
@@ -10,21 +11,29 @@ class persona(object):
 
 def saludo (request):  #primera vista
     p1 = persona("jefe cesar", "izquierdo")
-    #nombre = "cesar"
-    #apellido = "Izquierdo"
     ahora = datetime.datetime.now()
     temas_del_curso = ["platillas", "modelos", "formularios", "despliegue"]
+    #nombre = "cesar"
+    #apellido = "Izquierdo"
+    #doc_externo = loader.get_template('miplatilla.html')
+    # forma de cargar sin open
+    #doc_externo = open("C:/Users/cesar/OneDrive/Documentos/estudiar/1/Django/Proyecto1/Proyecto1/template/miplatilla.html")
+    #plt = Template(doc_externo.read())
+    #doc_externo.close
     
+    #ctx = Context({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora, "temas":temas_del_curso})
     
-    doc_externo = open("C:/Users/cesar/OneDrive/Documentos/estudiar/1/Django/Proyecto1/Proyecto1/template/miplatilla.html")
-    plt = Template(doc_externo.read())
-    doc_externo.close
-    
-    ctx = Context({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora, "temas":temas_del_curso})
-    
-    documento = plt .render(ctx)
-    return HttpResponse(documento)
+    #documento = doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora, "temas":temas_del_curso})
+    #return HttpResponse(documento)
+    return render(request, "miplatilla.html", {"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "momento_actual":ahora, "temas":temas_del_curso})
 
+def cursoC(request ):
+    fechaActual = datetime.datetime.now()
+    return render(request, "cursoC.html", {"dameFecha":fechaActual})
+
+def cursoCss(request ):
+    fechaActual = datetime.datetime.now()
+    return render(request, "cursoCss.html", {"dameFecha":fechaActual})
 
 def despedida(request):
     return HttpResponse("Hasta luego amigos de Django")
