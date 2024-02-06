@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <title>contactar</title>
+  
+    </head>
+
+    <body>
+        <h1>contactanos</h1>
+
+       <form action ="/contacto/" method="POST"> {% csrf_token %}
+
+            <P>Asunto: <input name="prd"  type="asunto"/></P>
+            <P>Correo: <input name="prd"  type="email"/></P>
+            <P>Mensaje: <textarea name="mensaje" rows = "15" cols = "45"></textarea></P>
+
+
+            <input type="submit" value="Enviar"/>
+            
+       </form>
+    </body>
+</html>
